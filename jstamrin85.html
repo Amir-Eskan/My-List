@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+:root {
+    --bg-dark: #070d1a;
+    --blue: #00a8ff;
+    --aqua: aqua;
+    --blue-light: #4dc9ff;
+    --blue-glow: rgba(0, 168, 255, .45);
+    --text: #eaf4ff;
+    --text-dim: #8aa8c9;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(1000px 600px at 85% -10%, rgba(0, 120, 255, .18), transparent 60%),
+        radial-gradient(800px 500px at -10% 110%, rgba(0, 200, 255, .12), transparent 60%),
+        linear-gradient(160deg, var(--bg-dark), #0a1830 55%, var(--bg-dark));
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--blue);
+    color: #fff;
+}
+
+
+.hed-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    padding: 60px 20px 40px;
+    animation: fadeDown .9s ease both;
+}
+
+.hed-text i {
+    font-size: 2.4rem;
+    color: var(--aqua);
+    filter: drop-shadow(0 0 12px rgba(0, 255, 255, .5));
+    animation: sway 3s ease-in-out infinite;
+}
+
+.hed-text h1 {
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    letter-spacing: 1px;
+}
+
+.hed-text > span {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+.contaner {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: min(1100px, 94vw);
+    margin: 0 auto 90px;
+}
+
+.left, .right {
+    flex: 1 1 440px;
+    max-width: 520px;
+    background: linear-gradient(165deg, rgba(13, 24, 46, .85), rgba(8, 15, 30, .9));
+    border: 1px solid rgba(0, 168, 255, .22);
+    border-radius: 24px;
+    padding: 28px 24px 32px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .05);
+    transition: border-color .4s ease, box-shadow .4s ease, transform .4s ease;
+}
+
+.left {
+    animation: fadeUp 1s .15s ease both;
+}
+
+.right {
+    animation: fadeUp 1s .3s ease both;
+}
+
+.left:hover, .right:hover {
+    border-color: rgba(0, 168, 255, .5);
+    transform: translateY(-6px);
+    box-shadow: 0 30px 65px rgba(0, 0, 0, .6), 0 0 35px rgba(0, 168, 255, .15);
+}
+
+
+.text-to, .text-to2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0, 168, 255, .15);
+}
+
+.text-to h2, .text-to2 h2 {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+}
+
+.text-to h2 i {
+    color: var(--blue);
+    margin-inline-end: 10px;
+    filter: drop-shadow(0 0 8px var(--blue-glow));
+}
+
+.text-to2 h2 i {
+    color: #ff4d7d;
+    margin-inline-end: 10px;
+    filter: drop-shadow(0 0 8px rgba(255, 77, 125, .45));
+}
+
+.text-to span, .text-to2 span {
+    color: var(--text-dim);
+    font-size: .85rem;
+    letter-spacing: 1px;
+}
+
+
+#num, .text-to2 button {
+    min-width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 168, 255, .35);
+    background: linear-gradient(135deg, #0e2a4a, #0a1f38);
+    color: var(--blue-light);
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: default;
+    transition: all .4s ease;
+    animation: pulse 2.5s ease-in-out infinite;
+}
+
+.text-to2 button {
+    border-color: rgba(255, 77, 125, .35);
+    color: #ff8fb1;
+    background: linear-gradient(135deg, #3a1224, #2a0d1a);
+}
+
+
+.inp, .inp2 {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.inp input, .inp2 input {
+    flex: 1;
+    background: rgba(6, 12, 26, .8);
+    border: 1px solid rgba(138, 168, 201, .25);
+    border-radius: 14px;
+    padding: 15px 18px;
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    caret-color: var(--blue);
+    transition: all .35s ease;
+}
+
+.inp input::placeholder, .inp2 input::placeholder {
+    color: rgba(138, 168, 201, .4);
+}
+
+.inp input:focus, .inp2 input:focus {
+    border-color: var(--blue);
+    background: rgba(0, 60, 120, .18);
+    box-shadow: 0 0 0 4px rgba(0, 168, 255, .15), 0 0 18px var(--blue-glow);
+}
+
+.inp2 input:focus {
+    border-color: #ff4d7d;
+    background: rgba(120, 10, 50, .15);
+    box-shadow: 0 0 0 4px rgba(255, 77, 125, .15), 0 0 18px rgba(255, 77, 125, .35);
+    caret-color: #ff4d7d;
+}
+
+
+#bot1, .inp2 button {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(135deg, #0062ff, var(--blue));
+    box-shadow: 0 8px 22px rgba(0, 120, 255, .35);
+    transition: all .4s cubic-bezier(.2, .8, .25, 1);
+}
+
+.inp2 button {
+    background: linear-gradient(135deg, #e02e66, #ff5c8d);
+    box-shadow: 0 8px 22px rgba(255, 77, 125, .35);
+}
+
+#bot1:hover, .inp2 button:hover {
+    transform: translateY(-3px) rotate(90deg);
+    box-shadow: 0 12px 30px rgba(0, 140, 255, .5), 0 0 25px var(--blue-glow);
+}
+
+
+
+#bot1:active, .inp2 button:active {
+    transform: scale(.92);
+}
+
+
+#ul1 {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 420px;
+    overflow-y: auto;
+    padding-inline-end: 6px;
+}
+
+#ul1::-webkit-scrollbar {
+    width: 6px;
+}
+
+#ul1::-webkit-scrollbar-track {
+    background: rgba(6, 12, 26, .6);
+    border-radius: 10px;
+}
+
+#ul1::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--blue), var(--blue-light));
+    border-radius: 10px;
+}
+
+
+.task, #ul1 li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(6, 12, 26, .7);
+    border: 1px solid rgba(138, 168, 201, .18);
+    border-radius: 14px;
+    padding: 14px 16px;
+
+    transition: all .35s ease;
+    cursor: pointer;
+}
+
+.task:hover, #ul1 li:hover {
+    border-color: var(--blue);
+    background: rgba(0, 60, 120, .15);
+ 
+}
+
+
+.task.done, #ul1 li.done {
+    opacity: .5;
+    text-decoration: line-through;
+    border-color: rgba(0, 255, 170, .3);
+    background: rgba(0, 80, 60, .12);
+}
+
+
+.empty {
+    text-align: center;
+    padding: 30px 10px;
+    color: var(--text-dim);
+    font-size: .95rem;
+}
+
+.empty i {
+    display: block;
+    font-size: 2rem;
+    color: rgba(0, 168, 255, .4);
+    margin-bottom: 10px;
+}
+
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 168, 255, .25); }
+    50%      { box-shadow: 0 0 0 10px rgba(0, 168, 255, 0); }
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-6deg); }
+    50%      { transform: rotate(6deg); }
+}
+
+@keyframes taskIn {
+    from { opacity: 0; transform: translateY(-14px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+
+@media (max-width: 980px) {
+    .contaner {
+        flex-direction: column;
+        align-items: center;
+    }
+    .left, .right {
+        width: 100%;
+    }
+}
+.rot{
+    transform: translateX(-2000px);
+    transition: transform 1s ease, opacity 1s ease;
+   
+
+}
+.checkd{
+    text-decoration: line-through;
+    color:red;
+
+}
+#ul1 li p {
+    margin-right: auto;
+    font-size: 18px;
+}
+#ul1 li {
+    #span-js{
+         color: white;
+    font-size: 17px;
+    background-color: #00a8ff;
+    padding: 5px 10px;
+ border-radius: 10px;
+ transition: .4s ease;
+
+    }
+   #span-js1{
+    color: white;
+    background-color: #3a1224;
+     padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 17px;
+      transition: .4s ease;
+   }
+   #input-js{
+    padding: 10px 15px;
+   }
+   
+}
+#span-js:hover{
+    transform: translate(-2px,-2px);
+  
+  opacity: .8;
+ box-shadow: 0 12px 30px rgba(0, 140, 255, .5), 0 0 25px var(--blue-glow);
+  
+}
+#span-js1:hover{
+    opacity: .8;
+     transform: translate(-2px,-2px);
+box-shadow: 0 12px 30px rgba(129, 23, 52, 0.646), 0 0 25px rgba(255, 77, 125, .4);
+}
+.footer {
+    width: min(1100px, 94vw);
+    margin: 0 auto;
+    padding: 25px 20px 30px;
+    text-align: center;
+    animation: fadeUp 1s ease both;
+}
+
+.footer-line {
+    width: 100%;
+    height:2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 168, 255, .5),
+        aqua,
+        rgba(0, 168, 255, .5),
+        transparent
+    );
+    position: relative;
+    top:15px;
+    
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    color: #eaf4ff;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    flex-direction: column;
+}
+
+.footer-logo i {
+    color: aqua;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, .4));
+}
+
+.footer-logo b {
+    color: #00a8ff;
+}
+
+.footer > p {
+    color: #8aa8c9;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 9px;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 18px;
+    
+    color: #71849e;
+    font-size: 11px;
+    h2{
+        color: aliceblue;
+    }
+    h1{
+        color: #00a8ff;
+        
+    }
+}
+
+.footer-bottom .fa-heart {
+    color: #00a8ff;
+    animation: heartBeat 1.8s infinite;
+}
+
+.footer-copy {
+    letter-spacing: 1px;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-bottom {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="hed-text">
+        <i class="fa-solid fa-leaf"></i>
+<h1>My <span style="color: aqua;">List</span></h1>
+<span>Progress over perfection.</span>
+    </div>
+    <div class="contaner">
+        <div class="left">
+<div class="text-to">
+    <div style="margin-left: 20px;">
+    <h2><i class="fa-solid fa-list-check"></i>To-Do list</h2>
+    <span>Things I need to do</span>
+</div>
+   <button style="margin-right: 20px;" id="num">0</button>
+</div>
+<div class="inp">
+    <input type="text" placeholder="Add a new task..." id="inp1">
+    <button id="bot1">+</button>
+    
+
+ 
+</div>
+<ul id="ul1">
+    
+</ul>
+  
+
+        </div>
+
+
+       
+
+
+
+    </div>  
+
+
+    <div class="footer-logo">
+        <i class="fa-solid fa-leaf"></i>
+        <span>Hope you <b> found it useful.</b></span>
+        
+    </div>
+
+    
+    <div class="footer-line"></div>
+
+    
+
+    <div class="footer-bottom">
+        <h2>Designed & Developed by</h2>
+        <h1>Amir Eskan</h1>
+        <span>Made with <i class="fa-solid fa-heart"></i> and JavaScript</span>
+        <span class="footer-copy">© 2026 My List</span>
+    </div>
+</footer>
+</body>
+<script>
+    const inp1=document.querySelector('#inp1')
+    const ul1=document.querySelector('#ul1')
+const bot1=document.querySelector('#bot1')
+const num=document.querySelector('#num')
+let a=0
+bot1.addEventListener('click',()=>{
+    let top=inp1.value
+    if(top==''){
+        alert('porrr kon')
+    }else{
+  num.innerText++
+    let li=document.createElement('li')
+    li.innerHTML=`
+    <p>${top}</p>
+   
+    <span onclick="edit(this)"  id="span-js">edit</span>
+    <span onclick="remove(this)" id="span-js1">remove</span>
+    <input onclick="chek1(this)" type="checkbox" id="input-js">
+   
+    `
+    ul1.append(li)
+    inp1.value=null
+    }
+})
+
+function chek1(s){
+    if(s.checked){
+s.parentElement.children[0].classList.add('checkd')
+}else{
+  s.parentElement.children[0].classList.remove('checkd')  
+}
+
+}
+
+function remove(s){
+    if(confirm('Are you sure you want to delete this task?')){
+      let li=s.parentElement
+      li.classList.add('rot')
+        num.innerText--
+       setTimeout(() => {
+        li.remove()
+    
+       }, 1000);
+    }
+}
+function edit(s){
+let x=s.parentElement.children[0].innerText
+let v=prompt('Enter a new task...',x)
+s.parentElement.children[0].innerText=v
+
+}
+</script>
+</html>
